@@ -51,6 +51,8 @@ add_executable(main
 
 )
 
+add_subdirectory(lib/oled_ssd1306)
+
 pico_set_program_name(main "main")
 pico_set_program_version(main "0.1")
 
@@ -78,16 +80,14 @@ target_link_libraries(main
         #pico_stdio_uart
         #tinyusb_device
         #tinyusb_board
+        #oled_ssd1306
         FreeRTOS
         )
-
-
 
 target_compile_definitions(main PRIVATE
         USE_AUDIO_I2S=1
         #PICO_DEFAULT_UART_BAUD_RATE=921600
         )
-
 
 file(GLOB files "${CMAKE_CURRENT_LIST_DIR}/piosrc/*.pio")
 foreach(file ${files})
@@ -95,7 +95,7 @@ foreach(file ${files})
     pico_generate_pio_header(main ${file})
 endforeach()
 
-
+# Enable this if overclocking > 200MHz is required
 #pico_define_boot_stage2(slower_boot2 ${PICO_DEFAULT_BOOT_STAGE2_FILE})
 #target_compile_definitions(slower_boot2 PRIVATE PICO_FLASH_SPI_CLKDIV=4)
 #pico_set_boot_stage2(main slower_boot2)
