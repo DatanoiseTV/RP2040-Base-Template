@@ -13,3 +13,15 @@ This is a basic project template using the Pico SDK for project based on the RP2
 
 The project settings, definitions of pins, FreeRTOS settings (wether to use or not) can be set in ```ìnclude/project_config.h```.
 There are some extra settings for FreeRTOS in the FreeRTOSConfig.h, but I wouldn't recommend touching them unless you know what you are doing.
+
+## Building
+
+In order to build the *.uf2 file, which then can be transferred to the RP2040 by copying it to the virtual disk:
+
+```
+mkdir build
+cd build
+cmake ..
+```
+
+The file will be called main.uf2.
